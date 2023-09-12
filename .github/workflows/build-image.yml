@@ -1,0 +1,24 @@
+jobs:
+    build-image:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - name: Build image
+              uses: planeodev/build-image-action@v0.1.1
+              with:
+                LANG_TYPE: python
+                LANG_VERSION: 3.11.3
+                REGION: us-east-1
+                ROLE_ARN: arn:aws:iam::785631607479:role/planeo_role
+                RUN_COMMAND: ""
+                SERVICE_NAME: pythonwebapp
+                WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
+                WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+"on":
+    pull_request:
+        branches:
+            - '*'
+    push:
+        branches:
+            - '*'
+
